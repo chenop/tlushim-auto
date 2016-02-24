@@ -1,0 +1,61 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "index.html".
+ -->
+<html ng-app="tlushim-auto">
+<head>
+    <title>Tlushim Automation</title>
+    <meta charset="UTF-8">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--Application's CSS -->
+    <link rel="stylesheet" href="./css/style.css"/>
+</head>
+<body>
+<div id="main" class="row" ng-controller="mainController">
+    <div class="text-center">
+        <form name="form">
+            <h3 class="form-signin-heading">תלושים</h3>
+
+            <div class="form-group">
+                <input class="form-control" id="id_num" ng-model="idNum" type="text" placeholder="תעודת זהות">
+            </div>
+
+            <div class="form-group">
+                <input class="form-control" name="password" ng-model="password" type="text" placeholder="סיסמא">
+            </div>
+
+
+            <div class="row">
+                <div class="enter-button col-xs-6">
+                    <button ng-disabled="shouldDisable()" class="btn btn-primary" ng-click="enterTlushim()">כניסה</button>
+                </div>
+
+                <div class="exit-button col-xs-6">
+                    <button ng-disabled="shouldDisable()" class="btn btn-primary" ng-click="exitTlushim()">יציאה</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- JQuery -->
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+
+<!-- Angular-->
+<script src="../node_modules/angular/angular.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script src="./js/app.js"></script>
+<script src="./js/controllers.js"></script>
+<!--<script src="./js/services.js"></script>-->
+
+</body>
+</html>
+
