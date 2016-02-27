@@ -22,15 +22,17 @@ angular.module('tlushim-auto')
             });
         }
 
-        public.tlushimLogin = function() {
-            public.getUserData(function (userData) {
-                tlushimApi.login(userData);
-            });
+        public.tlushimLogin = function(userData) {
+            tlushimApi.login(userData);
         }
+
+        public.tlushimLogout = function(userData) {
+            tlushimApi.logout(userData);
+        }
+
         public.displayEnterNotification = function(userData) {
             public.getUserData(function (userData) {
                 notificationService.notify("Login Reminder", "", function () {
-                    tlushimApi.enter(userData);
                 });
             });
         }
@@ -38,7 +40,6 @@ angular.module('tlushim-auto')
         function displayExitNotification(userData) {
             public.getUserData(function(userData) {
                 notificationService.notify("Logout Reminder", "", function () {
-                    tlushimApi.exit(userData);
                 });
             });
         }

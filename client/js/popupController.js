@@ -32,7 +32,7 @@ angular.module('tlushim-auto')
             return !($scope.idNum && $scope.password);
         }
 
-        $scope.updateUserData = function() {
+        function updateUserData(callBack) {
             var userData = {
                 'idNum': $scope.idNum
                 , 'password': $scope.password
@@ -40,12 +40,20 @@ angular.module('tlushim-auto')
 
             managerService.setUserData(userData);
 
+            if (callBack)
+                callBack(userData);
         }
 
         $scope.enterTlushim = function() {
-            managerService.tlushimLogin();
+            updateUserData(function(userData) {
+                managerService.tlushimLogin(userData);
+            })
         }
 
-
+        $scope.exitTlushim = function() {
+            updateUserData(function(userData) {
+                managerService.tlushimLogout(userData);
+            })
+        }
     });
 

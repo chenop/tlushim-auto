@@ -29,14 +29,13 @@
                 <input class="form-control" name="password" ng-model="password" type="text" placeholder="סיסמא">
             </div>
 
-
             <div class="row">
                 <div class="enter-button col-xs-6">
-                    <button ng-disabled="shouldDisable()" class="btn btn-primary" ng-click="updateUserData()">עדכן</button>
+                    <button ng-disabled="shouldDisable()" class="btn btn-danger" ng-click="exitTlushim()">יציאה</button>
                 </div>
 
                 <div class="exit-button col-xs-6">
-                    <button ng-disabled="shouldDisable()" class="btn btn-warning" ng-click="enterTlushim()">כניסה</button>
+                    <button ng-disabled="shouldDisable()" class="btn btn-success" ng-click="enterTlushim()">כניסה</button>
                 </div>
             </div>
         </form>
