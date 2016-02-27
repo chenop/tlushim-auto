@@ -6,6 +6,8 @@ angular.module('tlushim-auto')
     .factory('notificationService', function (tlushimApi) {
 
         var public = {};
+        var ICON_BELL_URL = 'http://icons.iconseeker.com/png/128/winter-wonderland/bell-6.png';
+
         init();
 
         function init() {
@@ -18,7 +20,6 @@ angular.module('tlushim-auto')
         }
 
         public.notify = function(title, body, callBack, icon) {
-            console.log("inside notifyMe");
             if (!Notification) {
                 alert('Desktop notifications not available in your browser. Try Chromium.');
                 return;
@@ -30,19 +31,15 @@ angular.module('tlushim-auto')
             }
             else {
                 var notification = new Notification(title, {
-                    icon: (!icon) ? 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png' : icon,
+                    icon: (!icon) ? ICON_BELL_URL : icon,
                     body: body,
                 });
 
                 notification.onclick = function () {
-                    window.open("http://stackoverflow.com/a/13328397/1269037");
                     if (callBack)
                         callBack();
                 };
-
             }
-
-
         }
 
         public.displayEnterNotification = function (callBack) {

@@ -22,35 +22,45 @@ angular.module('tlushim-auto')
             });
         }
 
-        public.displayEnterNotification = function() {
-            notificationService.notify("Login Reminder", "", function () {
-                tlushimApi.enter(userData);
+        public.tlushimLogin = function() {
+            public.getUserData(function (userData) {
+                tlushimApi.login(userData);
+            });
+        }
+        public.displayEnterNotification = function(userData) {
+            public.getUserData(function (userData) {
+                notificationService.notify("Login Reminder", "", function () {
+                    tlushimApi.enter(userData);
+                });
             });
         }
 
-        function displayExitNotification() {
-            notificationService.notify("Logout Reminder", "", function () {
-                tlushimApi.exit(userData);
+        function displayExitNotification(userData) {
+            public.getUserData(function(userData) {
+                notificationService.notify("Logout Reminder", "", function () {
+                    tlushimApi.exit(userData);
+                });
             });
         }
 
         public.registerAlarms = function() {
-            chromeApi.registerAlarm(ENTER_ALARM_NAME, ENTER_DATE_IN_MILISEC, 1);
-            chromeApi.registerAlarm(EXIT_ALARM_NAME, EXIT_DATE_IN_MILISEC, 1);
+            chromeApi.registerAlarm(ENTER_ALARM_NAME, ENTER_DATE_IN_MILISEC, 24*60);
+            chromeApi.registerAlarm(EXIT_ALARM_NAME, EXIT_DATE_IN_MILISEC, 24*60);
 
             chromeApi.onAlarm(function(alarm) {
                 switch (alarm.name) {
                     case ENTER_ALARM_NAME: {
-                        public.displayEnterNotification();
+                        console.log('enter alarm! ' + new Date());
+                        public.displayEnterNotification(userData);
                         break;
                     }
                     case EXIT_ALARM_NAME: {
-                        displayExitNotification();
+                        console.log('exit alarm! ' + new Date());
+                        displayExitNotification(userData);
                         break;
                     }
                 }
-                console.log('alarm! ' + new Date());
-                console.log(alarm);
+                console.log('enter alarm! ' + new Date());
             })
         };
 

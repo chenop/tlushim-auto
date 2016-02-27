@@ -3,7 +3,7 @@
  */
 
 angular.module('tlushim-auto')
-    .controller('popupController', function ($scope, notificationService, chromeApi) {
+    .controller('popupController', function ($scope, managerService) {
 
         var lastEnter;
 
@@ -32,19 +32,18 @@ angular.module('tlushim-auto')
             return !($scope.idNum && $scope.password);
         }
 
-        $scope.enterTlushim = function() {
-            var data = {
+        $scope.updateUserData = function() {
+            var userData = {
                 'idNum': $scope.idNum
                 , 'password': $scope.password
             }
 
-            managerService.setUserData(data);
+            managerService.setUserData(userData);
 
-            managerService.displayEnterNotification();
         }
 
-        $scope.exitTlushim = function() {
-            managerService.displayExitNotification();
+        $scope.enterTlushim = function() {
+            managerService.tlushimLogin();
         }
 
 

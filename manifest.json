@@ -25,5 +25,6 @@
     "activeTab"
     , "storage"
     , "alarms"
+    , "https://www.tlushim.co.il/*"
   ]
 }
