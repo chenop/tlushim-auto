@@ -3,18 +3,16 @@
  */
 
 console.log('background is here...');
+var userData;
 
-var date = new Date();
-var enterDateInMilisec = date.setHours(9);
+// you can add more and more dependencies as long as it is declared in the manifest.json
+var tlushimAuto = angular.module('tlushim-auto');
 
+// since we don't have any html doc to use ngApp, we have to bootstrap our angular app from here
+angular.element(document).ready(function () {
+    angular.bootstrap(document, ['tlushim-auto']);
+});
 
-chrome.alarms.create("enterAlarm", {
-    'when': enterDateInMilisec
-    , 'delayInMinutes': null
-    , 'periodInMinutes' : 1 //24 * 60 // daily
-})
-
-chrome.alarms.onAlarm.addListener(function() {
-    console.log('alarm!');
-})
-
+tlushimAuto.run(function (managerService) {
+    managerService.registerAlarms();
+});

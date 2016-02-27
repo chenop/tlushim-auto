@@ -11,7 +11,15 @@
     "default_title": "Click here!"
   },
   "background":{
-    "scripts": ["client/js/background.js"]
+    "scripts": [
+      "node_modules/angular/angular.js"
+    , "client/js/app.js"
+      , "client/js/tlushimApi.js"
+      , "client/js/notificationService.js"
+      , "client/js/chromeApi.js"
+      , "client/js/managerService.js"
+      , "client/js/background.js"
+    ]
   },
   "permissions": [
     "activeTab"
