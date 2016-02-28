@@ -65,5 +65,9 @@ angular.module('tlushim-auto')
             })
         };
 
+        public.fetchMissions = function(userData) {
+            return tlushimApi.fetchMissions(userData);
+        }
+
         return public;
     })

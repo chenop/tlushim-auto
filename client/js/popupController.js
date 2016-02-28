@@ -74,6 +74,21 @@ angular.module('tlushim-auto')
             })
         }
 
+        $scope.fetchMissions = function() {
+            var userData = {
+                'idNum': $scope.idNum
+                , 'password': $scope.password
+            }
+
+            managerService.fetchMissions(userData)
+                .then(function (missions) {
+                    for (var i = 0; i < missions.length; i++) {
+                        var mission = missions[i];
+
+                        console.log(mission);
+                    }
+                })
+        }
         init();
     });
 

@@ -19,6 +19,21 @@ angular.module('tlushim-auto')
             console.log("exit tlusim with: ", userData);
         }
 
+        public.fetchMissions = function(userData) {
+            return tlushimLogin(userData)
+                .then(function(result){
+                    var missions = [];
+                    $(result.data).find("#job option").each(function (name, val) {
+                        missions.push({
+                            name: val.text,
+                            value: val.value
+                        });
+                    })
+
+                    return missions;
+                })
+        }
+
         function tlushimLogin(userData) {
             if (!userData.idNum || !userData.password)
                 console.log('userData is not valid - missing idNum or password fields', userData);
