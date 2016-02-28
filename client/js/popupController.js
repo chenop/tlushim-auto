@@ -29,20 +29,7 @@ angular.module('tlushim-auto')
                             $scope.missions = missions;
                         })
                 }
-
-                $scope.$apply();
             });
-        }
-
-        function isUserEnteredToday() {
-            if (!lastEnter)
-                return false;
-
-            return false;
-        }
-
-        function isWorkDay() {
-            return true;
         }
 
         $scope.calcPasswordVisibility = function() {
@@ -56,38 +43,27 @@ angular.module('tlushim-auto')
             return !($scope.idNum && $scope.password);
         }
 
-        function updateUserData(callBack) {
-            var userData = {
+        function getUserData() {
+            return {
                 'idNum': $scope.idNum
                 , 'password': $scope.password
                 , 'selectedMission': $scope.selectedMission
             }
-
-            managerService.setUserData(userData, function() {
-                if (callBack)
-                    callBack(userData);
-            });
-
         }
-
         $scope.enterTlushim = function() {
             $scope.enterLoading = true;
 
-            updateUserData(function(userData) {
-                return managerService.tlushimLogin(userData, function() {
-                    $scope.enterLoading = false;
-                });
-            })
+            managerService.tlushimLogin(getUserData(), function () {
+                $scope.enterLoading = false;
+            });
         }
 
         $scope.exitTlushim = function() {
             $scope.exitLoading = true;
 
-            updateUserData(function(userData) {
-                managerService.tlushimLogout(userData, function() {
-                    $scope.exitLoading = false;
-                });
-            })
+            managerService.tlushimLogout(getUserData(), function () {
+                $scope.exitLoading = false;
+            });
         }
 
         init();

@@ -23,7 +23,7 @@ angular.module('tlushim-auto')
             chrome.storage.sync.set(data, function() {
                 // Notify that we saved.
                 if (callBack)
-                    callBack();
+                    callBack(data);
             });
         }
 
