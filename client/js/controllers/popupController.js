@@ -16,6 +16,7 @@ angular.module('tlushim-auto')
                 $scope.idNum = data['idNum'];
                 $scope.password = data['password'];
                 $scope.selectedMission = (!data['selectedMission']) ? null : data['selectedMission'];
+                $scope.isNotificationAllowed = false; //managerService.isNotificationAllowed();
 
                 if ($scope.idNum && $scope.password) {
                     var userData = {
@@ -27,9 +28,15 @@ angular.module('tlushim-auto')
                     managerService.fetchMissions(userData)
                         .then(function (missions) {
                             $scope.missions = missions;
+                            if (!$scope.selectedMission)
+                                $scope.selectedMission = $scope.missions[0];
                         })
                 }
             });
+        }
+
+        $scope.requestNotificationPermission = function() {
+            managerService.requestNotificationPermission();
         }
 
         $scope.calcPasswordVisibility = function() {

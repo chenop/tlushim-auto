@@ -15,7 +15,8 @@ angular.module('tlushim-auto')
             // request permission on page load
             document.addEventListener('DOMContentLoaded', function () {
                 if (Notification.permission !== "granted")
-                    Notification.requestPermission();
+                    Notification.requestPermission()
+                        .then(function() {});
             });
         }
 
@@ -25,9 +26,10 @@ angular.module('tlushim-auto')
                 return;
             }
 
-            if (Notification.permission !== "granted") {
+            if (!public.isNotificationAllowed()) {
                 console.log("No permission to open notification - please grant a permission in the alert window...");
-                Notification.requestPermission();
+                Notification.requestPermission()
+                    .then(function() {});
             }
             else {
                 var notification = new Notification(title, {
@@ -56,6 +58,18 @@ angular.module('tlushim-auto')
                 , ""
                 , callBack
             );
+        }
+
+        public.requestNotificationPermission = function() {
+            if (!public.isNotificationAllowed()) {
+                console.log("No permission to open notification - please grant a permission in the alert window...");
+                Notification.requestPermission()
+                    .then(function() {});
+            };
+        }
+
+        public.isNotificationAllowed = function() {
+            return Notification.permission === "granted";
         }
 
         return public;

@@ -84,5 +84,9 @@ angular.module('tlushim-auto')
                 });
         }
 
+        public.requestNotificationPermission = function() {
+            notificationService.requestNotificationPermission();
+        }
+
         return public;
     })
