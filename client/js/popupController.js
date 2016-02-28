@@ -15,6 +15,21 @@ angular.module('tlushim-auto')
             managerService.getUserData(function(data) {
                 $scope.idNum = data['idNum'];
                 $scope.password = data['password'];
+                $scope.selectedMission = (!data['selectedMission']) ? null : data['selectedMission'];
+
+                if ($scope.idNum && $scope.password) {
+                    var userData = {
+                        'idNum': $scope.idNum
+                        , 'password': $scope.password
+                        , 'selectedMission': $scope.selectedMission
+                    }
+
+                    managerService.fetchMissions(userData)
+                        .then(function (missions) {
+                            $scope.missions = missions;
+                        })
+                }
+
                 $scope.$apply();
             });
         }
@@ -45,6 +60,7 @@ angular.module('tlushim-auto')
             var userData = {
                 'idNum': $scope.idNum
                 , 'password': $scope.password
+                , 'selectedMission': $scope.selectedMission
             }
 
             managerService.setUserData(userData, function() {
@@ -74,21 +90,6 @@ angular.module('tlushim-auto')
             })
         }
 
-        $scope.fetchMissions = function() {
-            var userData = {
-                'idNum': $scope.idNum
-                , 'password': $scope.password
-            }
-
-            managerService.fetchMissions(userData)
-                .then(function (missions) {
-                    for (var i = 0; i < missions.length; i++) {
-                        var mission = missions[i];
-
-                        console.log(mission);
-                    }
-                })
-        }
         init();
     });
 

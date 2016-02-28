@@ -65,8 +65,19 @@ angular.module('tlushim-auto')
             })
         };
 
+        /**
+         * Assuming its the first item
+         */
+        function removeGeneralMission(missions) {
+            missions.splice(0, 1);
+            return missions;
+        }
+
         public.fetchMissions = function(userData) {
-            return tlushimApi.fetchMissions(userData);
+            return tlushimApi.fetchMissions(userData)
+                .then(function(missions) {
+                    return removeGeneralMission(missions)
+                });
         }
 
         return public;

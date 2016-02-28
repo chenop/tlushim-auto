@@ -86,7 +86,7 @@ angular.module('tlushim-auto')
                 .then(function (result) {
                     return clockIn(0)
                         .then(function() {
-                            return clockIn(501)
+                            return clockIn(userData.selectedMission)
                                 .then(function() {
                                     if (callBack)
                                         return callBack();

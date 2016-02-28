@@ -1,7 +1,7 @@
 #main {
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 200px;
+    width: 300px;
     position: relative;
     background-color: #fff;
     border-radius: 4px 4px 0 0;

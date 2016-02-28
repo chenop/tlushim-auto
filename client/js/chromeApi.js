@@ -7,11 +7,12 @@ angular.module('tlushim-auto')
         var public = {};
 
         public.get = function(callBack) {
-            chrome.storage.sync.get(['idNum', 'password'], function (items) {
+            chrome.storage.sync.get(['idNum', 'password', 'selectedMission'], function (items) {
                 // Notify that we saved.
                 var data = {
                     idNum: items['idNum']
                     , password: items['password']
+                    , selectedMission: items['selectedMission']
                 }
                 if (callBack)
                     callBack(data);
@@ -38,9 +39,5 @@ angular.module('tlushim-auto')
             chrome.alarms.onAlarm.addListener(callBack);
         }
 
-
-        public.registerExitAlarm = function() {
-
-        }
         return public;
     })
