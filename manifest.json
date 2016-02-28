@@ -19,10 +19,10 @@
     "scripts": [
       "node_modules/angular/angular.js"
     , "client/js/app.js"
-      , "client/js/tlushimApi.js"
-      , "client/js/notificationService.js"
-      , "client/js/chromeApi.js"
-      , "client/js/managerService.js"
+      , "client/js/services/tlushimApi.js"
+      , "client/js/services/notificationService.js"
+      , "client/js/services/chromeApi.js"
+      , "client/js/services/managerService.js"
       , "client/js/background.js"
     ]
   },
