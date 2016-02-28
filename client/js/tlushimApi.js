@@ -5,6 +5,10 @@
 angular.module('tlushim-auto')
     .factory('tlushimApi', function($http) {
         var public = {};
+        var DIRECTION = {
+            IN: "IN",
+            OUT: "OT"
+        }
 
         public.enter = function(userData) {
             console.log("enter tlusim with: ", userData);
@@ -15,7 +19,7 @@ angular.module('tlushim-auto')
             console.log("exit tlusim with: ", userData);
         }
 
-        function tlushimLogin() {
+        function tlushimLogin(userData) {
             if (!userData.idNum || !userData.password)
                 console.log('userData is not valid - missing idNum or password fields', userData);
 
@@ -34,8 +38,10 @@ angular.module('tlushim-auto')
             })
         }
 
-        function clockIn() {
+        function clockIn(jobId) {
             var formData = new FormData();
+            formData.append('job', jobId);
+            formData.append('direc', DIRECTION.IN);
 
             return $http({
                 method: 'POST',
@@ -46,8 +52,10 @@ angular.module('tlushim-auto')
             })
         }
 
-        function clockOut() {
+        function clockOut(jobId) {
             var formData = new FormData();
+            formData.append('job', jobId);
+            formData.append('direc', DIRECTION.OUT);
 
             return $http({
                 method: 'POST',
@@ -61,14 +69,17 @@ angular.module('tlushim-auto')
         public.login = function(userData) {
             tlushimLogin(userData)
                 .then(function (result) {
-                    return clockIn();
+                    return clockIn(0)
+                        .then(function() {
+                            clockIn(501);
+                        });
                 })
         }
 
         public.logout = function(userData) {
             tlushimLogin(userData)
                 .then(function (result) {
-                    return clockOut();
+                    return clockOut(0);
                 })
         }
 
