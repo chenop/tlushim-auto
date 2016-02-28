@@ -13,4 +13,5 @@
 
 .shouldShowPassword {
     font-weight: normal;
+    float: right;
 }

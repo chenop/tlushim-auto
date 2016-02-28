@@ -30,8 +30,10 @@
 
             <div class="form-group">
                 <input class="form-control" name="password" ng-model="password" type="{{inputType}}" placeholder="סיסמא">
-                <input type="checkbox" id="shouldShowPassword" ng-model="shouldShowPassword" ng-click="calcPasswordVisibility()" />
-                <label for="shouldShowPassword" class="shouldShowPassword">הצג סיסמה</label>
+                <div class="shouldShowPassword">
+                    <label for="shouldShowPassword" class="shouldShowPassword">הצג סיסמה</label>
+                    <input type="checkbox" id="shouldShowPassword" ng-model="shouldShowPassword" ng-click="calcPasswordVisibility()" />
+                </div>
             </div>
 
             <div class="form-group">
