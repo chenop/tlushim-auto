@@ -14,6 +14,9 @@
 
     <!--Application's CSS -->
     <link rel="stylesheet" href="./css/style.css"/>
+
+    <!--Font Awesome-->
+    <link href="../node_modules/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="main" class="row" ng-controller="popupController">
@@ -26,18 +29,41 @@
             </div>
 
             <div class="form-group">
-                <input class="form-control" name="password" ng-model="password" type="text" placeholder="סיסמא">
+                <input class="form-control" name="password" ng-model="password" type="{{inputType}}" placeholder="סיסמא">
+                <input type="checkbox" id="shouldShowPassword" ng-model="shouldShowPassword" ng-click="calcPasswordVisibility()" />
+                <label for="shouldShowPassword" class="shouldShowPassword">Show password</label>
             </div>
 
-            <div class="row">
-                <div class="enter-button col-xs-6">
-                    <button ng-disabled="shouldDisable()" class="btn btn-danger" ng-click="exitTlushim()">יציאה</button>
-                </div>
+            <div class="form-group">
+                <div class="enter-button">
+                    <button ng-disabled="shouldDisable()" class="btn btn-success form-control" ng-click="enterTlushim()">
+                    <span data-ng-hide="enterLoading">
+                        כניסה
+                    </span>
+                    <span data-ng-show="enterLoading">
+                        <i class="fa fa-spinner fa-spin"></i>
 
-                <div class="exit-button col-xs-6">
-                    <button ng-disabled="shouldDisable()" class="btn btn-success" ng-click="enterTlushim()">כניסה</button>
+...המתן
+                    </span>
+                    </button>
                 </div>
             </div>
+
+            <div class="form-group">
+                <div class="enter-button">
+                    <button ng-disabled="shouldDisable()" class="btn btn-danger form-control" ng-click="exitTlushim()">
+                    <span data-ng-hide="exitLoading">
+יציאה
+                    </span>
+                    <span data-ng-show="exitLoading">
+                        <i class="fa fa-spinner fa-spin"></i>
+
+...המתן
+                    </span>
+                    </button>
+                </div>
+            </div>
+
         </form>
     </div>
 </div>

@@ -11,8 +11,8 @@ angular.module('tlushim-auto')
         var EXIT_DATE_IN_MILISEC = new Date().setHours(16);
         var userData;
 
-        public.setUserData = function(userData) {
-            chromeApi.set(userData);
+        public.setUserData = function(userData, callBack) {
+            chromeApi.set(userData, callBack);
         }
 
         public.getUserData = function(callBack) {
@@ -22,12 +22,12 @@ angular.module('tlushim-auto')
             });
         }
 
-        public.tlushimLogin = function(userData) {
-            tlushimApi.login(userData);
+        public.tlushimLogin = function(userData, callBack) {
+            return tlushimApi.login(userData, callBack);
         }
 
-        public.tlushimLogout = function(userData) {
-            tlushimApi.logout(userData);
+        public.tlushimLogout = function(userData, callBack) {
+            return tlushimApi.logout(userData, callBack);
         }
 
         public.displayEnterNotification = function(userData) {

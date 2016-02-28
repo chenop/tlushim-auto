@@ -66,20 +66,28 @@ angular.module('tlushim-auto')
             })
         }
 
-        public.login = function(userData) {
-            tlushimLogin(userData)
+        public.login = function(userData, callBack) {
+            return tlushimLogin(userData)
                 .then(function (result) {
                     return clockIn(0)
                         .then(function() {
-                            clockIn(501);
+                            return clockIn(501)
+                                .then(function() {
+                                    if (callBack)
+                                        return callBack();
+                                });
                         });
                 })
         }
 
-        public.logout = function(userData) {
-            tlushimLogin(userData)
+        public.logout = function(userData, callBack) {
+            return tlushimLogin(userData)
                 .then(function (result) {
-                    return clockOut(0);
+                    return clockOut(0)
+                        .then(function() {
+                            if (callBack)
+                                return callBack();
+                        });
                 })
         }
 
