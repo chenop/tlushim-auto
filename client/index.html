@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--
  This page is shown when the extension button is clicked, because the
  "browser_action" field in manifest.json contains the "default_popup" key with
@@ -11,6 +11,9 @@
 
     <!-- Bootstrap core CSS -->
     <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap RTL Theme -->
+    <link rel="stylesheet" href="../node_modules/bootstrap-rtl-3.3.4/dist/css/bootstrap-rtl.css">
 
     <!--Application's CSS -->
     <link rel="stylesheet" href="./css/style.css"/>
@@ -30,21 +33,40 @@
 
             <div class="form-group">
                 <input class="form-control" name="password" ng-model="password" type="{{inputType}}" placeholder="סיסמא">
-                <div class="shouldShowPassword">
-                    <label for="shouldShowPassword" class="shouldShowPassword">הצג סיסמה</label>
-                    <input type="checkbox" id="shouldShowPassword" ng-model="shouldShowPassword" ng-click="calcPasswordVisibility()" />
+
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="shouldShowPassword"ng-model="shouldShowPassword" ng-click="calcPasswordVisibility()" />
+                    הצג סיסמה
+                </label>
+            </div>
+
+            <div class="container-div">
+                <div class="col-xs-8 no-padding">
+                    <select ng-disabled="shouldDisable()" class="form-control" name="missionsSelect" id="missionsSelect" ng-model="selectedMission">
+                        <option ng-repeat="mission in missions" value="{{mission.value}}">{{mission.name}}</option>
+                    </select>
+                </div>
+                <div class="col-xs-4 no-padding">
+                    <button ng-disabled="shouldDisable()" class="btn btn-default" ng-click="fetchMissions()">
+                    <span data-ng-hide="missionsLoading">
+עדכן
+                    </span>
+                    <span data-ng-show="missionsLoading">
+                        <i class="fa fa-spinner fa-spin"></i>
+
+...המתן
+                    </span>
+                    </button>
+
+                    <!--<button class="btn btn-default" ng-click="fetchMissions()">עדכן</button>-->
                 </div>
             </div>
 
             <div class="form-group">
-                <select class="form-control" name="missionsSelect" id="missionsSelect" ng-model="selectedMission">
-                    <option ng-repeat="mission in missions" value="{{mission.value}}">{{mission.name}}</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <div>
-                    <button ng-disabled="shouldDisable()" class="btn btn-success form-control" ng-click="enterTlushim()">
+                <button ng-disabled="shouldDisable()" class="btn btn-success form-control" ng-click="enterTlushim()">
                     <span data-ng-hide="enterLoading">
                         כניסה
                     </span>
@@ -53,8 +75,7 @@
 
 ...המתן
                     </span>
-                    </button>
-                </div>
+                </button>
             </div>
 
             <div class="form-group">
@@ -73,7 +94,7 @@
             </div>
 
             <div class="form-group">
-                <button ng-hide="isNotificationAllowed" class="btn-link form-control" ng-click="requestNotificationPermission()">אפשר תזכורות</button>
+                <button ng-hide="isNotificationAllowed" class="btn-link form-control" ng-click="testNotification()">אפשר תזכורות</button>
             </div>
         </form>
     </div>

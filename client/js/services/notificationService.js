@@ -29,7 +29,9 @@ angular.module('tlushim-auto')
             if (!public.isNotificationAllowed()) {
                 console.log("No permission to open notification - please grant a permission in the alert window...");
                 Notification.requestPermission()
-                    .then(function() {});
+                    .then(function(result) {
+                        console.log(result);
+                    });
             }
             else {
                 var notification = new Notification(title, {

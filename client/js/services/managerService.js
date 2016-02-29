@@ -84,8 +84,8 @@ angular.module('tlushim-auto')
                 });
         }
 
-        public.requestNotificationPermission = function() {
-            notificationService.requestNotificationPermission();
+        public.testNotification = function() {
+            notificationService.notify("Test Test Test", "");
         }
 
         return public;

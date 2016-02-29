@@ -7,6 +7,23 @@ angular.module('tlushim-auto')
 
         var lastEnter;
 
+        function fetchMissions() {
+            var userData = {
+                'idNum': $scope.idNum
+                , 'password': $scope.password
+                , 'selectedMission': $scope.selectedMission
+            }
+
+            $scope.missionsLoading = true;
+            managerService.fetchMissions(userData)
+                .then(function (missions) {
+                    $scope.missions = missions;
+                    if (!$scope.selectedMission)
+                        $scope.selectedMission = $scope.missions[0];
+                    $scope.missionsLoading = false;
+                })
+        }
+
         function init() {
             $scope.shouldShowPassword = false;
             $scope.calcPasswordVisibility();
@@ -19,24 +36,13 @@ angular.module('tlushim-auto')
                 $scope.isNotificationAllowed = false; //managerService.isNotificationAllowed();
 
                 if ($scope.idNum && $scope.password) {
-                    var userData = {
-                        'idNum': $scope.idNum
-                        , 'password': $scope.password
-                        , 'selectedMission': $scope.selectedMission
-                    }
-
-                    managerService.fetchMissions(userData)
-                        .then(function (missions) {
-                            $scope.missions = missions;
-                            if (!$scope.selectedMission)
-                                $scope.selectedMission = $scope.missions[0];
-                        })
+                    fetchMissions();
                 }
             });
         }
 
-        $scope.requestNotificationPermission = function() {
-            managerService.requestNotificationPermission();
+        $scope.testNotification = function() {
+            managerService.testNotification();
         }
 
         $scope.calcPasswordVisibility = function() {
@@ -71,6 +77,10 @@ angular.module('tlushim-auto')
             managerService.tlushimLogout(getUserData(), function () {
                 $scope.exitLoading = false;
             });
+        }
+
+        $scope.fetchMissions = function() {
+            fetchMissions();
         }
 
         init();
