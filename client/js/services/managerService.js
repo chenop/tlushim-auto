@@ -15,20 +15,38 @@ angular.module('tlushim-auto')
             chromeApi.set(userData, callBack);
         }
 
+        function hasHappenedToday(time) {
+            if (!time)
+                return false;
+
+            //Get today's date
+            var today = new Date();
+
+            //call setHours to take the time out of the comparison
+            return (new Date(time).setHours(0,0,0,0) == today.setHours(0,0,0,0));
+        }
+
         public.getUserData = function(callBack) {
             chromeApi.get(function (data) {
+                data['wasAlreadyEnterToday'] = hasHappenedToday(data['enterTime']);
+                data['wasAlreadyExitToday'] = hasHappenedToday(data['exitTime']);
+
                 if (callBack)
                     callBack(data);
             });
         }
 
         public.tlushimLogin = function(userData, callBack) {
+            userData['enterTime'] = Date.now();
+
             setUserData(userData, function(userData) {
                 return tlushimApi.login(userData, callBack);
             })
         }
 
         public.tlushimLogout = function(userData, callBack) {
+            userData['exitTime'] = Date.now();
+
             setUserData(userData, function(userData) {
                 return tlushimApi.logout(userData, callBack);
             })
@@ -88,5 +106,8 @@ angular.module('tlushim-auto')
             notificationService.notify("Test Test Test", "");
         }
 
+        public.isNotificationAllowed = function() {
+            return notificationService.isNotificationAllowed();
+        }
         return public;
     })

@@ -33,7 +33,10 @@ angular.module('tlushim-auto')
                 $scope.idNum = data['idNum'];
                 $scope.password = data['password'];
                 $scope.selectedMission = (!data['selectedMission']) ? null : data['selectedMission'];
-                $scope.isNotificationAllowed = false; //managerService.isNotificationAllowed();
+                $scope.wasAlreadyEnterToday = data['wasAlreadyEnterToday'];
+                $scope.wasAlreadyExitToday = data['wasAlreadyExitToday'];
+
+                    $scope.isNotificationAllowed = managerService.isNotificationAllowed();
 
                 if ($scope.idNum && $scope.password) {
                     fetchMissions();
@@ -68,6 +71,7 @@ angular.module('tlushim-auto')
 
             managerService.tlushimLogin(getUserData(), function () {
                 $scope.enterLoading = false;
+                $scope.wasAlreadyEnterToday = true;
             });
         }
 
@@ -76,6 +80,7 @@ angular.module('tlushim-auto')
 
             managerService.tlushimLogout(getUserData(), function () {
                 $scope.exitLoading = false;
+                $scope.wasAlreadyExitToday = true;
             });
         }
 
