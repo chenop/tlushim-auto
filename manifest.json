@@ -30,6 +30,7 @@
     "activeTab"
     , "storage"
     , "alarms"
+    , "notifications"
     , "https://www.tlushim.co.il/*"
   ]
 }
