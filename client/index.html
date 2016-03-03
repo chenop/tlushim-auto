@@ -33,15 +33,15 @@
 
             <div class="form-group">
                 <input class="form-control" name="password" ng-model="password" type="{{inputType}}" placeholder="סיסמא">
-
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="shouldShowPassword"ng-model="shouldShowPassword" ng-click="calcPasswordVisibility()" />
+                        הצג סיסמה
+                    </label>
+                </div>
             </div>
 
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" id="shouldShowPassword"ng-model="shouldShowPassword" ng-click="calcPasswordVisibility()" />
-                    הצג סיסמה
-                </label>
-            </div>
+
 
             <div class="container-div">
                 <div class="col-xs-8 no-padding">
@@ -50,7 +50,7 @@
                     </select>
                 </div>
                 <div class="col-xs-4 no-padding">
-                    <button ng-disabled="shouldDisable()" class="btn btn-default" ng-click="fetchMissions()">
+                    <button ng-disabled="shouldDisable()" class="btn btn-default align-left" ng-click="fetchMissions()">
                     <span data-ng-hide="missionsLoading">
 עדכן
                     </span>

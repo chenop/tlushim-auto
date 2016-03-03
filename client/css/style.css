@@ -30,3 +30,12 @@ button .form-control {
     display: inline-block;
     margin-bottom: 15px;
 }
+
+.checkbox {
+    float:right;
+    margin-top: 0px;
+}
+
+.align-left {
+    float:left;
+}
