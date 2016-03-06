@@ -49,7 +49,6 @@ angular.module('tlushim-auto')
                 data: formData,
                 headers: { 'Content-Type': undefined },
                 transformRequest: angular.identity,
-                //headers: {'Content-Type': 'multipart/form-data'}  // set the headers so angular passing info as form data (not request payload)
             })
         }
 
@@ -74,7 +73,7 @@ angular.module('tlushim-auto')
 
             return $http({
                 method: 'POST',
-                url: 'https://www.tlushim.co.il/main.php?op=post_clock', // TODO chen set the right Url
+                url: 'https://www.tlushim.co.il/main.php?op=post_clock',
                 data: formData,
                 headers: { 'Content-Type': undefined },
                 transformRequest: angular.identity,

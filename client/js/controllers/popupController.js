@@ -19,7 +19,7 @@ angular.module('tlushim-auto')
                 .then(function (missions) {
                     $scope.missions = missions;
                     if (!$scope.selectedMission)
-                        $scope.selectedMission = $scope.missions[0];
+                        $scope.selectedMission = 0;//$scope.missions[0];
                     $scope.missionsLoading = false;
                 })
         }
