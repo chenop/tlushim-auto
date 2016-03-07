@@ -7,8 +7,8 @@ angular.module('tlushim-auto')
         var public = {};
         var ENTER_ALARM_NAME = "enterAlarm";
         var EXIT_ALARM_NAME = "exitAlarm";
-        var ENTER_DATE_IN_MILISEC = new Date().setHours(9);
-        var EXIT_DATE_IN_MILISEC = new Date().setHours(16);
+        var ENTER_DATE_IN_MILISEC = new Date().setHours(8);
+        var EXIT_DATE_IN_MILISEC = new Date().setHours(15);
         var userData;
 
         function setUserData (userData, callBack) {
