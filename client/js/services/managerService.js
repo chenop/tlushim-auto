@@ -96,6 +96,8 @@ angular.module('tlushim-auto')
         }
 
         public.fetchMissions = function(userData) {
+            setUserData(userData); // Save userData
+
             return tlushimApi.fetchMissions(userData)
                 .then(function(missions) {
                     return removeGeneralMission(missions)

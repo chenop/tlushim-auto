@@ -8,11 +8,7 @@ angular.module('tlushim-auto')
         var lastEnter;
 
         function fetchMissions() {
-            var userData = {
-                'idNum': $scope.idNum
-                , 'password': $scope.password
-                , 'selectedMission': $scope.selectedMission
-            }
+            var userData = getUserData();
 
             $scope.missionsLoading = true;
             managerService.fetchMissions(userData)
