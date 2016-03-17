@@ -15,6 +15,8 @@ angular.module('tlushim-auto')
             chromeApi.set(userData, callBack);
         }
 
+        public.setUserData = setUserData;
+
         function hasHappenedToday(time) {
             if (!time)
                 return false;

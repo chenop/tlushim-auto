@@ -45,7 +45,7 @@
 
             <div class="container-div">
                 <div class="col-xs-8 no-padding">
-                    <select ng-disabled="shouldDisable()" class="form-control" name="missionsSelect" id="missionsSelect" ng-model="selectedMission" placeholder>
+                    <select ng-disabled="shouldDisable()" ng-change="setMission()" class="form-control" name="missionsSelect" id="missionsSelect" ng-model="selectedMission" placeholder>
                         <option value="" disabled selected>Select your option</option>
                         <option ng-repeat="mission in missions" value="{{mission.value}}">{{mission.name}}</option>
                     </select>
@@ -95,7 +95,7 @@
             </div>
 
             <div class="form-group">
-                <button class="btn-link form-control" ng-click="testNotification()">אפשר תזכורות</button>
+                <button class="btn-link form-control" ng-hide="isNotificationAllowed" ng-click="testNotification()">אפשר תזכורות</button>
             </div>
         </form>
     </div>

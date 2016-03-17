@@ -8,7 +8,7 @@ angular.module('tlushim-auto')
         var lastEnter;
 
         function fetchMissions() {
-            var userData = getUserData();
+            var userData = getUserDataFromUI();
 
             $scope.missionsLoading = true;
             managerService.fetchMissions(userData)
@@ -55,7 +55,7 @@ angular.module('tlushim-auto')
             return !($scope.idNum && $scope.password);
         }
 
-        function getUserData() {
+        function getUserDataFromUI() {
             return {
                 'idNum': $scope.idNum
                 , 'password': $scope.password
@@ -65,7 +65,7 @@ angular.module('tlushim-auto')
         $scope.enterTlushim = function() {
             $scope.enterLoading = true;
 
-            managerService.tlushimLogin(getUserData(), function () {
+            managerService.tlushimLogin(getUserDataFromUI(), function () {
                 $scope.enterLoading = false;
                 $scope.wasAlreadyEnterToday = true;
             });
@@ -74,7 +74,7 @@ angular.module('tlushim-auto')
         $scope.exitTlushim = function() {
             $scope.exitLoading = true;
 
-            managerService.tlushimLogout(getUserData(), function () {
+            managerService.tlushimLogout(getUserDataFromUI(), function () {
                 $scope.exitLoading = false;
                 $scope.wasAlreadyExitToday = true;
             });
@@ -84,6 +84,10 @@ angular.module('tlushim-auto')
             fetchMissions();
         }
 
+        $scope.setMission = function() {
+            var userData = getUserDataFromUI();
+            managerService.setUserData(userData);
+        }
         init();
     });
 
