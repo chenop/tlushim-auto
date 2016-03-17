@@ -1,5 +1,5 @@
 # tlushim-auto
-Automation tool for https://www.tlushim.co.il
+[Chrome extension](https://chrome.google.com/webstore/detail/tlushim-automation/gkiemgpihainopbepilmjgmolgdlmlih) for https://www.tlushim.co.il
 
 ##Installation
 1. Download latest release (crx file)
