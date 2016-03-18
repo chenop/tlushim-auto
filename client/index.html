@@ -13,7 +13,7 @@
     <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap RTL Theme -->
-    <link rel="stylesheet" href="../node_modules/bootstrap-rtl-3.3.4/dist/css/bootstrap-rtl.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-rtl/dist/css/bootstrap-rtl.css">
 
     <!--Application's CSS -->
     <link rel="stylesheet" href="./css/style.css"/>
@@ -44,21 +44,19 @@
 
 
             <div class="container-div">
-                <div class="col-xs-8 no-padding">
+                <div class="col-xs-9 no-padding">
                     <select ng-disabled="shouldDisable()" ng-change="setMission()" class="form-control" name="missionsSelect" id="missionsSelect" ng-model="selectedMission" placeholder>
                         <option value="" disabled selected>Select your option</option>
                         <option ng-repeat="mission in missions" value="{{mission.value}}">{{mission.name}}</option>
                     </select>
                 </div>
-                <div class="col-xs-4 no-padding">
+                <div class="col-xs-3 no-padding">
                     <button ng-disabled="shouldDisable()" class="btn btn-default align-left" ng-click="fetchMissions()">
                     <span data-ng-hide="missionsLoading">
-עדכן
+                        <i class="fa fa-refresh"></i>
                     </span>
                     <span data-ng-show="missionsLoading">
-                        <i class="fa fa-spinner fa-spin"></i>
-
-...המתן
+                        <i class="fa fa-refresh fa-spin"></i>
                     </span>
                     </button>
 
