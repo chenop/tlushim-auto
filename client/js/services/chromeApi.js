@@ -7,7 +7,7 @@ angular.module('tlushim-auto')
         var public = {};
 
         public.get = function(callBack) {
-            chrome.storage.sync.get(['idNum', 'password', 'selectedMission', 'enterTime', 'exitTime'], function (items) {
+            chrome.storage.sync.get(['idNum', 'password', 'selectedMission', 'enterTime', 'exitTime', 'missions'], function (items) {
                 // Notify that we saved.
                 var data = {
                     idNum: items['idNum']
@@ -15,6 +15,7 @@ angular.module('tlushim-auto')
                     , selectedMission: items['selectedMission']
                     , enterTime: items['enterTime']
                     , exitTime: items['exitTime']
+                    , missions: items['missions']
                 }
                 if (callBack)
                     callBack(data);
