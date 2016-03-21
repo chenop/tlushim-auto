@@ -68,6 +68,13 @@ angular.module('tlushim-auto')
             });
         }
 
+        var isWorkDay = function () {
+            var date = new Date();
+            var day = date.getDay();
+
+            return ((day === 0) || (day === 1) || (day === 2) || (day === 3) || (day === 4)); // work day is Sunday - Thursday
+        };
+
         public.registerAlarms = function() {
             chromeApi.registerAlarm(ENTER_ALARM_NAME, ENTER_DATE_IN_MILISEC, 24*60);
             chromeApi.registerAlarm(EXIT_ALARM_NAME, EXIT_DATE_IN_MILISEC, 24*60);
@@ -75,13 +82,13 @@ angular.module('tlushim-auto')
             chromeApi.onAlarm(function(alarm) {
                 switch (alarm.name) {
                     case ENTER_ALARM_NAME: {
-                        console.log('enter alarm! ' + new Date());
-                        public.displayEnterNotification(userData);
+                        if (isWorkDay())
+                            public.displayEnterNotification(userData);
                         break;
                     }
                     case EXIT_ALARM_NAME: {
-                        console.log('exit alarm! ' + new Date());
-                        displayExitNotification(userData);
+                        if (isWorkDay())
+                            displayExitNotification(userData);
                         break;
                     }
                 }
